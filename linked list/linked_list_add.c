@@ -7,31 +7,42 @@ typedef struct Node {
 } Node;
 
 
-void output(Node *root) {
-    while (root != NULL){
-        printf("%d\n", root->x);
-        root = root->next;
+void output(Node **node) {
+    Node *nodes = *node;
+    while (nodes != NULL){
+        printf("%d\n", nodes->x);
+        nodes = nodes->next;
     }
 }
 
 
-void insert_end(Node *root, int value) {
-    while (root->next != NULL){
-        root = root->next;
+void insert_end(Node **node, int value) {
+    Node *new_node = malloc(sizeof(Node));
+    if (new_node == NULL) {
+        exit(1);
     }
-    root->next = malloc(sizeof(Node));
-    root->next->x = value;
-    root->next->next = NULL;
+
+    new_node->next = NULL;
+    new_node->x = value;
+
+    if (*node == NULL) {
+        *node = new_node;
+        return;
+    }
+
+    Node *current_node = *node;
+    while (current_node->next != NULL){
+        current_node = current_node->next;
+    }
+    current_node->next = new_node;
 }
 
 int main() {
-    Node root;
-    root.x = 15;
-    root.next = NULL;
-    insert_end(&root, 5);
-    insert_end(&root, -1);
-    insert_end(&root, 3);
-    output(&root);
+    Node *node = NULL;
+    insert_end(&node, 5);
+    insert_end(&node, -1);
+    insert_end(&node, 3);
+    output(&node);
     
     return 0;
 }
