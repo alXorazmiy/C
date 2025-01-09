@@ -29,6 +29,8 @@ int main() {
     root.x = 15;
     root.next = NULL;
     insert_end(&root, 5);
+    insert_end(&root, -1);
+    insert_end(&root, 3);
     output(&root);
     
     return 0;
