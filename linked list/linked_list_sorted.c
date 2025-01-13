@@ -49,28 +49,11 @@ void insert_sorted(Node **node, int value){
     while (current_node !=NULL){
         if(current_node->next->x > value)  {
             new_node->next = current_node->next;
-            // current_node->x = value;
             current_node->next = new_node;
             break;
         }
         current_node = current_node->next;
     }
-    
-    // else if (index == 1) {
-    //     *node = current_node->next; 
-    //     free(current_node);
-    //     current_node = NULL;
-    // } else {
-    //     while (index != 1){
-    //         previous_node = current_node;
-    //         current_node = current_node->next;
-    //         index--;
-    //     }
-    //     previous_node->next = current_node->next;
-    //     free(current_node);
-    //     current_node = NULL;
-        
-    // }
     
 }
 
