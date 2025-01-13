@@ -38,21 +38,22 @@ void insert_end(Node **node, int value) {
 
 
 void insert_after(Node *node, int value, int index){
+    Node *current_node = node;
     Node *new_node = malloc(sizeof(Node));
     if (new_node == NULL) {
         exit(1);
     }
-    int i = 0;
-    while (node != NULL){
-        if (index == i) {
-            new_node->x = value;
-            new_node->next = node->next;
-            node->next = new_node;
-            break;
-        }
-        node = node->next;
-        i++;
+   
+    new_node->x = value;
+    new_node->next = NULL;
+    index--;
+    while (index != 0){
+        current_node = current_node->next;
+        index--;
     }
+    new_node->next = current_node->next;
+    current_node->next = new_node;
+    
     
 }
 
@@ -69,7 +70,7 @@ void deollacate(Node **node) {
 
 int main() {
     Node *node = NULL;
-    int index = 2;
+    int index = 5;
     insert_end(&node, 5);
     insert_end(&node, -1);
     insert_end(&node, 3);
